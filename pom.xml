@@ -159,8 +159,28 @@
 		  <artifactId>spring-orm</artifactId>
 		  <version>${org.springframework-version}</version>
 		</dependency>
-		
 		<!-- Fin Nuevas -->
+		
+	  <!--Spring Security -->
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-core</artifactId>
+		  <version>${org.springframework-version}</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-web</artifactId>
+		  <version>${org.springframework-version}</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-config</artifactId>
+		  <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- /Spring Security -->
+		
     </dependencies>
 
     <build>
