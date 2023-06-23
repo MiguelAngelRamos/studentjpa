@@ -17,7 +17,7 @@
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-    	<property name="url" value="jdbc:mysql://localhost:3306/datos"></property>
+    	<property name="url" value="jdbc:mysql://localhost:3306/datostudents"></property>
     	<property name="username" value="root"></property>
     	<property name="password" value="academyjava"></property>
     </bean>
