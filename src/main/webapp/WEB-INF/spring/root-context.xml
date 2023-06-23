@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- Contexto Raíz: Define recursos compartidos a todos los componentes Web -->
 
+    <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+    	<property name="url" value="jdbc:mysql://localhost:3306/datos"></property>
+    	<property name="username" value="root"></property>
+    	<property name="password" value="academyjava"></property>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    	<property name="dataSource" ref="ds"></property>
+    	<property name="packagesToScan" value="tech.awakelab.studentjpa.model.entity"></property>
+    	<property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+      </property>
+
+      <property name="jpaProperties">
+        <props>
+ 			<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+    		<prop key="hibernate.show_sql">true</prop>
+    		<prop key="hibernate.hbm2ddl.auto">update</prop>
+    		<prop key="use_sql_comments">true</prop>
+        </props>
+      </property>
+    </bean>
+
+    <bean id="transactionManager"
+      class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory"
+         ref="entityManagerFactory"></property>
+    </bean>
+
+    <context:component-scan base-package="tech.awakelab.studentjpa.model"></context:component-scan>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <jpa:repositories base-package="tech.awakelab.studentjpa.model.repository"></jpa:repositories>
 </beans>
