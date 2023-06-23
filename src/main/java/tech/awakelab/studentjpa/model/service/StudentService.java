@@ -1,6 +1,9 @@
 package tech.awakelab.studentjpa.model.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,8 @@ public class StudentService {
 	}
 	
 	public Student getOne(int id) {
-		return studentRepository.getOne(id);
+	    return studentRepository.findById(id)
+	        .orElseThrow(() -> new NoSuchElementException("No Student found with ID " + id));
 	}
 	
 	public void create(Student student) {
@@ -33,4 +37,6 @@ public class StudentService {
 	public void delete(int id) {
 		studentRepository.delete(studentRepository.getOne(id));
 	}
+	
+  
 }
