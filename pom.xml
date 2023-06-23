@@ -116,7 +116,7 @@
             <scope>test</scope>
         </dependency>
         
-                <!-- Nuevas -->
+        <!-- Nuevas -->
         
         <dependency>
 		  <groupId>mysql</groupId>
@@ -159,6 +159,7 @@
 		  <artifactId>spring-orm</artifactId>
 		  <version>${org.springframework-version}</version>
 		</dependency>
+		
 		<!-- Fin Nuevas -->
     </dependencies>
 
