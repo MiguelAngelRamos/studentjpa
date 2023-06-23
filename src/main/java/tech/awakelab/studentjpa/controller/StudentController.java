@@ -38,6 +38,13 @@ public class StudentController {
 	    studentService.update(student); // Actualizas el estudiante en tu servicio
 	    return "redirect:/students"; // Rediriges al usuario a la lista de estudiantes
 	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deleteStudent(@PathVariable("id") int id) {
+	    studentService.delete(id); // Eliminas el estudiante desde tu servicio
+	    return "redirect:/students"; // Rediriges al usuario a la lista de estudiantes
+	}
+
 
 	
 

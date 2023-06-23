@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
   <div class="container-fluid">
@@ -29,16 +30,19 @@
         </li>
       </ul>
       
-     <c:if test="${not empty sessionScope.usuario}">
+     <div>
      	<div class="d-flex justify-content-between align-items-center">
-    	<p class="text-white-50 mx-3 my-2"> Bienvenido <span class="fw-bold text-capitalize">${sessionScope.usuario}</span></p>
+    	<p class="text-white-50 mx-3 my-2"> Bienvenido <span class="fw-bold text-capitalize">
+    	<sec:authentication property="principal.username"/>
+		</span></p>
 
-	    <form class="form-inline" action="ServletLogout" method="post">
-	        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Cerrar sesiï¿½n</button>
-	    </form>
+		<form class="form-inline" action="${pageContext.request.contextPath}/logout" method="post">
+	    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Cerrar sesión</button>
+	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
 		</div>
      
-     </c:if>
+     </div>
     </div>
   </div>
 </nav>

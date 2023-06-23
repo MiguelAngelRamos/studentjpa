@@ -43,8 +43,8 @@
                         
                          <a class="text-success" href="<c:url value='/edit/${s.id}' />"><i class="fa-solid fa-pen-to-square mx-3"></i></a>
 
-                         
- 						 <a class="text-danger" href="#"><i class="fa-solid fa-trash"></i></a>
+ 						<a class="text-danger" href="<c:url value='/delete/${s.id}' />"><i class="fa-solid fa-trash"></i></a>
+
                           
                         </td>
                       </tr>

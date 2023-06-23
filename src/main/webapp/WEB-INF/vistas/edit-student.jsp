@@ -12,9 +12,17 @@
 	 <!-- /Font Awesome -->
   </head>
 <body>
-    <div class="container">
-        <h2>Edit Student</h2>
-        <form:form action="${pageContext.request.contextPath}/student/edit" modelAttribute="student" method="post" class="form-horizontal">
+
+    <!-- Navbar -->
+    <jsp:include page="navbar.jsp" />
+    <!-- End Navbar -->
+    <div class="container mt-5">
+    
+        <h2 class="text-center">Edit Student</h2>
+        
+        <div class="row mt-5">
+        	<div class="col-4 offset-4">
+        	<form:form action="${pageContext.request.contextPath}/student/edit" modelAttribute="student" method="post" class="form-horizontal">
             <form:hidden path="id"/>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -29,8 +37,13 @@
                 <form:input path="email" class="form-control"/>
             </div>
 
-            <button class="btn btn-primary" type="submit">Save</button>
+                <div class="d-grid gap-2 mt-2">
+                        <button type="submit" class="btn btn-success">Send</button>
+                </div>
         </form:form>
+        	</div>
+        </div>
+
     </div>
 </body>
 </html>
