@@ -12,14 +12,30 @@
       <http auto-config="true">
         	<intercept-url pattern="/" access="permitAll"/>
         	<intercept-url pattern="/students" access="hasAnyAuthority('ADMIN')"/>
+        	
+        	<intercept-url pattern="/api/*" access="hasAnyAuthority('ADMIN')"/>
+        
+        	<!-- Para crear un formulario personalizado -->
+        	<form-login login-page="/login"
+        		authentication-failure-url="/error"
+        		username-parameter="username"
+        		password-parameter="password"/>
+        	<csrf disabled="true"/>
+        	<logout logout-success-url="/login"/>
        </http>
         
         <authentication-manager>
         	<authentication-provider>
         		<password-encoder hash="bcrypt"/>
+        		<!--
         		<user-service>
         			<user name="miguel" authorities="ADMIN" password="$2a$10$br285zcBWkWzay7AB9FVveywJxBWXyCmcYnAnYciSuuxiy/0PtNbG"/>
-        		</user-service>
+        		</user-service>  
+        		 -->
+        		 <jdbc-user-service data-source-ref="ds"
+        		 	users-by-username-query= "select usuario as username, password, 1 as enabled from usuarios where usuario = ?"
+        		 	authorities-by-username-query="select usuario as username, rol as authority from usuarios where usuario = ?"
+        		 />
         	</authentication-provider>
         </authentication-manager>
  

@@ -2,7 +2,10 @@ package tech.awakelab.studentjpa.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +18,15 @@ import tech.awakelab.studentjpa.model.service.StudentService;
 
 @Controller
 public class StudentController {
+  
+    private static final Logger logger = Logger.getLogger(StudentController.class);
 
 	@Autowired
 	private StudentService studentService;
 	
 	@RequestMapping(value="/students", method = RequestMethod.GET)
 	public ModelAndView mostrarStudents() {
+	    logger.info("Obteniendo todos los estudiantes de la base de datos");
 		List<Student> students = studentService.getAll(); // Select 
 		return new ModelAndView("students", "students", students);
 	}
@@ -46,6 +52,27 @@ public class StudentController {
 	}
 
 
+	// Para el formulario de login
+	
+	@RequestMapping(value="/login")
+	public ModelAndView login() {
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping(value="/error")
+	public ModelAndView errorLogin() {
+		return new ModelAndView("login", "error", "true");
+	}
+	
+	@RequestMapping(value="/logout")
+	public ModelAndView logout() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null) {
+			SecurityContextHolder.getContext().setAuthentication(null);
+		}
+		
+		return new ModelAndView("redirect:/login?logout");
+	}
 	
 
 }
