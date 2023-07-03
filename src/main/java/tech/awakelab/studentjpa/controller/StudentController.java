@@ -23,11 +23,11 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
-	
+	// http://localhost:8080/students
 	@RequestMapping(value="/students", method = RequestMethod.GET)
 	public ModelAndView mostrarStudents() {
 	    logger.info("Obteniendo todos los estudiantes de la base de datos");
-		List<Student> students = studentService.getAll(); // Select 
+		List<Student> students = studentService.getAll(); // select * from "student";
 		return new ModelAndView("students", "students", students);
 	}
 	

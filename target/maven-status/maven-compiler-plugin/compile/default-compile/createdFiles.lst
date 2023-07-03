@@ -1,6 +1,0 @@
-tech\awakelab\studentjpa\model\service\StudentService.class
-tech\awakelab\studentjpa\HomeController.class
-tech\awakelab\studentjpa\controller\RestStudentController.class
-tech\awakelab\studentjpa\controller\StudentController.class
-tech\awakelab\studentjpa\model\repository\IStudentRepository.class
-tech\awakelab\studentjpa\model\entity\Student.class

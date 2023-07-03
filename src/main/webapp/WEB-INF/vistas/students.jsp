@@ -32,7 +32,7 @@
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                    <!-- el ciclo for de java -->
+                    <!-- el ciclo for de java List<Student> students-->
                      <c:forEach var="s" items="${students}">
                       <tr>
                         <td><c:out value="${s.getId()}"></c:out></td>

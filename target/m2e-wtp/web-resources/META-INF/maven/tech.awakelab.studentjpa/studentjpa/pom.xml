@@ -215,7 +215,7 @@
         <!-- Nombre del archivo final de empaquetado -->
         <finalName>${project.artifactId}-${project.version}</finalName>
 
-        <!-- Listado de Plugins a utilizar -->
+        <!-- Listado de Plugins a utilizar --> 
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
